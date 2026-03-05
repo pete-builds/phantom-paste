@@ -1,0 +1,13 @@
+services:
+  phantom-paste:
+    build: .
+    container_name: phantom-paste
+    restart: unless-stopped
+    ports:
+      - "3693:3693"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - PORT=3693
+      # Set PHANTOM_TOKEN to require auth, or leave empty for open access
+      # - PHANTOM_TOKEN=your-secret-token

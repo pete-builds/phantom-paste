@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phantom Paste</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.1/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tweetnacl/1.0.3/nacl-fast.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="logo"><span class="ghost">&#9760;</span> PHANTOM PASTE</h1>
+            <p class="tagline">zero-knowledge ephemeral pastes</p>
+        </header>
+
+        <!-- CREATE VIEW -->
+        <div id="create-view">
+            <textarea id="content" placeholder="paste your secrets here..." spellcheck="false"></textarea>
+            <div class="controls">
+                <div class="control-group">
+                    <label>self-destruct</label>
+                    <div class="btn-group" id="expiry-group">
+                        <button class="btn-option" data-value="1h">1 hour</button>
+                        <button class="btn-option active" data-value="1d">1 day</button>
+                        <button class="btn-option" data-value="7d">7 days</button>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label>burn after reading</label>
+                    <div class="btn-group" id="views-group">
+                        <button class="btn-option active" data-value="0">unlimited</button>
+                        <button class="btn-option" data-value="1">1 view</button>
+                        <button class="btn-option" data-value="5">5 views</button>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label>syntax</label>
+                    <select id="syntax">
+                        <option value="">auto-detect</option>
+                        <option value="markdown">markdown</option>
+                        <option value="javascript">javascript</option>
+                        <option value="python">python</option>
+                        <option value="go">go</option>
+                        <option value="bash">bash</option>
+                        <option value="json">json</option>
+                        <option value="yaml">yaml</option>
+                        <option value="html">html</option>
+                        <option value="css">css</option>
+                        <option value="sql">sql</option>
+                        <option value="plaintext">plain text</option>
+                    </select>
+                </div>
+            </div>
+            <button id="create-btn" class="btn-primary">
+                <span class="btn-text">CREATE PHANTOM</span>
+            </button>
+        </div>
+
+        <!-- LINK VIEW -->
+        <div id="link-view" class="hidden">
+            <div class="link-box">
+                <p class="link-label">your phantom link:</p>
+                <input type="text" id="share-link" readonly>
+                <button id="copy-btn" class="btn-secondary">COPY</button>
+            </div>
+            <div class="link-meta" id="link-meta"></div>
+            <button id="new-btn" class="btn-secondary">NEW PASTE</button>
+        </div>
+
+        <!-- VIEW PASTE -->
+        <div id="view-paste" class="hidden">
+            <div id="paste-meta" class="paste-meta"></div>
+            <div id="paste-output" class="paste-output"></div>
+        </div>
+
+        <!-- DESTROYED VIEW -->
+        <div id="destroyed-view" class="hidden">
+            <div class="destroyed-box">
+                <div class="skull">&#9760;</div>
+                <h2>THIS PASTE HAS BEEN DESTROYED</h2>
+                <p class="destroyed-sub">it existed once. now it doesn't.</p>
+                <button onclick="window.location.href='/'" class="btn-secondary">NEW PASTE</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+</html>

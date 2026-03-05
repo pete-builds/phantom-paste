@@ -1,0 +1,6 @@
+data/
+phantom-paste
+.git
+.gitignore
+.dockerignore
+SESSION-RESUME.md
